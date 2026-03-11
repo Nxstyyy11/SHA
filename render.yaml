@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: smart-healthcare-analytics
+    runtime: python
+    plan: free
+    healthCheckPath: /api/health
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: python run_project.py
+    envVars:
+      - key: DATA_DIR
+        value: /opt/render/project/src/data
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1

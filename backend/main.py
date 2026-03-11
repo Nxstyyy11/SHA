@@ -7,8 +7,8 @@ import secrets
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 
-import ml_model
-from database import AuthSession, Patient, Prediction, User, append_patient_to_csv, get_db, init_db
+from . import ml_model
+from .database import AuthSession, Patient, Prediction, User, append_patient_to_csv, get_db, init_db
 from fastapi import Depends, FastAPI, Header, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
@@ -16,7 +16,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from sqlalchemy import func, text
 from sqlalchemy.orm import Session
-from ml_model import get_feature_importance, get_model_accuracy, get_model_comparison
+from .ml_model import get_feature_importance, get_model_accuracy, get_model_comparison
 
 
 app = FastAPI(
@@ -35,12 +35,9 @@ app.add_middleware(
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FRONTEND_DIR = os.path.join(BASE_DIR, "..", "frontend")
-IS_VERCEL = bool(os.getenv("VERCEL"))
-PREDICTION_LOG_PATH = (
-    os.path.join("/tmp", "smart_healthcare_analytics_predictions.log")
-    if IS_VERCEL
-    else os.path.join(BASE_DIR, "..", "data", ".gitkeep")
-)
+DEFAULT_DATA_DIR = os.path.join(BASE_DIR, "..", "data")
+DATA_DIR = os.getenv("DATA_DIR", DEFAULT_DATA_DIR)
+PREDICTION_LOG_PATH = os.path.join(DATA_DIR, "predictions.log")
 SESSION_TTL_DAYS = 30
 
 if os.path.isdir(FRONTEND_DIR):
@@ -237,11 +234,6 @@ def login_user(data: AuthInput, db: Session = Depends(get_db)):
 @app.get("/api/auth/me")
 def auth_me(user: User = Depends(get_current_user)):
     return {"id": user.id, "username": user.username}
-
-
-@app.get("/api/health")
-def health_check():
-    return {"status": "ok"}
 
 
 @app.post("/api/auth/logout")

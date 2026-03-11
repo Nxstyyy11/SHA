@@ -52,37 +52,39 @@ smart-healthcare-analytics/
 pip install -r backend/requirements.txt
 
 # 2. Start the server (from project root)
-cd backend
-python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+python run_project.py --dev
+
+# Windows PowerShell alternative
+./run_project.ps1 -Dev
+
+# Linux/macOS alternative
+./run_project.sh --dev
 
 # 3. Open in browser
 http://localhost:8000
 ```
 
-## 🚀 Deploy on Vercel (FastAPI + Static Frontend)
+## 🚀 Deploy (Render)
 
-This repo is ready for Vercel with the included `api/index.py` and `vercel.json`.
+This project runs best on a platform that supports long-running FastAPI servers and persistent disk.
 
-### Vercel Build & Output Settings
+### Render Web Service Settings
 
-- **Framework Preset**: `Other`
-- **Build Command**: *(leave blank)*
-- **Output Directory**: `frontend`
-- **Install Command**: `pip install -r backend/requirements.txt`
+- Build Command: `pip install -r backend/requirements.txt`
+- Start Command: `python run_project.py`
 
-### Steps
+### Render Environment Variables
 
-1. Push your changes to GitHub.
-2. Create a new Vercel project from this repo.
-3. Apply the Build & Output settings above.
-4. Deploy.
+- `DATA_DIR=/opt/render/project/src/data`
+
+### Render Disk
+
+- Add a disk mount at `/opt/render/project/src/data`
 
 ### Notes
 
-- The frontend calls the API on the same origin (no config needed).
-- Vercel serverless storage is ephemeral. For persistent data, use an external DB.
-- Quick check after deploy: open `/api/health` and expect `{ "status": "ok" }`.
-- Example health check command: `curl https://<your-vercel-domain>/api/health`
+- Render provides a `$PORT` variable automatically. The app uses it.
+
 
 ## 📊 Dataset
 
