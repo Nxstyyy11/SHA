@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Driven Smart Healthcare Analytics | Diabetes Insights</title>
+  <meta name="description"
+    content="Interactive dashboard for Pima Indians Diabetes Dataset analysis — explore statistics, trends, and ML-powered risk predictions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ───── NAV ───── -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <span class="nav-icon">🏥</span>
+      <span class="nav-title">Smart Healthcare Analytics</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#auth" class="nav-link">Login</a>
+      <a href="#stats" class="nav-link">Stats</a>
+      <a href="#charts" class="nav-link">Charts</a>
+      <a href="#model" class="nav-link">Model</a>
+      <a href="#patients" class="nav-link">Patients</a>
+      <a href="#myPredictions" class="nav-link">My Predictions</a>
+      <a href="#predict" class="nav-link nav-link--cta">Predict Risk</a>
+    </nav>
+  </header>
+
+  <!-- ───── HERO ───── -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>AI Diabetes Analytics<br /><span class="hero-sub">Powered by AI Machine Learning</span></h1>
+      <p class="hero-desc">Explore the Pima Indians Diabetes Dataset — interactive charts, AI ML model insights, and
+        patient records at your fingertips.</p>
+    </div>
+    <div class="hero-glow"></div>
+  </section>
+
+  <!-- ───── AUTH ───── -->
+  <section id="auth" class="section">
+    <h2 class="section-title">Patient Login</h2>
+    <p class="section-desc">Create your account or sign in to save predictions, view your history, and compare recent
+      results.</p>
+    <div class="auth-card">
+      <div class="auth-row auth-row--buttons">
+        <button id="loginBtn" class="auth-btn">Login</button>
+        <button id="registerBtn" class="auth-btn auth-btn--soft">Register</button>
+        <button id="logoutBtn" class="auth-btn auth-btn--danger" style="display:none">Logout</button>
+      </div>
+      <div class="auth-status" id="authStatus">Not logged in.</div>
+    </div>
+  </section>
+
+  <!-- ───── STATS CARDS ───── -->
+  <section id="stats" class="section">
+    <h2 class="section-title">📊 Dataset Overview</h2>
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card loading" id="statTotal">
+        <div class="stat-icon">👥</div>
+        <div class="stat-value">—</div>
+        <div class="stat-label">Total Patients</div>
+      </div>
+      <div class="stat-card loading" id="statDiabetic">
+        <div class="stat-icon">⚠️</div>
+        <div class="stat-value">—</div>
+        <div class="stat-label">Diabetic</div>
+      </div>
+      <div class="stat-card loading" id="statNonDiabetic">
+        <div class="stat-icon">✅</div>
+        <div class="stat-value">—</div>
+        <div class="stat-label">Non-Diabetic</div>
+      </div>
+      <div class="stat-card loading" id="statGlucose">
+        <div class="stat-icon">🩸</div>
+        <div class="stat-value">—</div>
+        <div class="stat-label">Avg Glucose</div>
+      </div>
+      <div class="stat-card loading" id="statBMI">
+        <div class="stat-icon">⚖️</div>
+        <div class="stat-value">—</div>
+        <div class="stat-label">Avg BMI</div>
+      </div>
+      <div class="stat-card loading" id="statAge">
+        <div class="stat-icon">🎂</div>
+        <div class="stat-value">—</div>
+        <div class="stat-label">Avg Age</div>
+      </div>
+      <div class="stat-card loading" id="statAccuracy">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-value">—</div>
+        <div class="stat-label">Model Accuracy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── MY PREDICTIONS ───── -->
+  <section id="myPredictions" class="section">
+    <h2 class="section-title">My Prediction History</h2>
+    <p class="section-desc">Track your total submissions, review past predictions, and compare your latest result with
+      the previous one.</p>
+    <div class="my-pred-grid">
+      <div class="my-pred-card">
+        <div class="my-pred-label">Total Predictions</div>
+        <div class="my-pred-value" id="myPredCount">0</div>
+      </div>
+      <div class="my-pred-card">
+        <div class="my-pred-label">Latest Risk</div>
+        <div class="my-pred-value" id="myPredLatestRisk">-</div>
+      </div>
+      <div class="my-pred-card">
+        <div class="my-pred-label">Latest Probability</div>
+        <div class="my-pred-value" id="myPredLatestProb">-</div>
+      </div>
+      <div class="my-pred-card">
+        <div class="my-pred-label">Change vs Previous</div>
+        <div class="my-pred-value" id="myPredCompare">-</div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;margin:1rem 0 0.5rem;">
+      <button id="exportCsvBtn" class="auth-btn auth-btn--soft" style="display:none">⬇ Export History (CSV)</button>
+    </div>
+
+    <div class="table-wrapper" style="margin-top:0.5rem;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Prediction</th>
+            <th>Risk</th>
+            <th>Probability</th>
+            <th>Glucose</th>
+            <th>BMI</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody id="myPredictionBody">
+          <tr>
+            <td colspan="7" class="loading-row">Login to view your prediction history.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ───── CHARTS ───── -->
+  <section id="charts" class="section">
+    <h2 class="section-title">📈 Visual Insights</h2>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h3 class="chart-title">Outcome Distribution</h3>
+        <div class="chart-wrap">
+          <canvas id="chartOutcome"></canvas>
+        </div>
+      </div>
+      <div class="chart-card chart-card--wide">
+        <h3 class="chart-title">Avg Feature Values by Outcome</h3>
+        <div class="chart-wrap">
+          <canvas id="chartFeatures"></canvas>
+        </div>
+      </div>
+      <div class="chart-card chart-card--wide">
+        <h3 class="chart-title">Glucose Level Distribution</h3>
+        <div class="chart-wrap">
+          <canvas id="chartGlucose"></canvas>
+        </div>
+      </div>
+      <div class="chart-card chart-card--wide">
+        <h3 class="chart-title">BMI Distribution</h3>
+        <div class="chart-wrap">
+          <canvas id="chartBmi"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── MODEL INSIGHTS ───── -->
+  <section id="model" class="section">
+    <h2 class="section-title">🤖 Model Insights</h2>
+    <p class="section-desc">Feature importances from the trained Random Forest and a comparison with Logistic Regression
+      across key classification metrics.</p>
+    <div class="charts-grid">
+      <div class="chart-card chart-card--wide">
+        <h3 class="chart-title">Feature Importance (Random Forest)</h3>
+        <div class="chart-wrap">
+          <canvas id="chartFeatureImportance"></canvas>
+        </div>
+      </div>
+      <div class="chart-card chart-card--wide">
+        <h3 class="chart-title">Model Comparison — RF vs Logistic Regression</h3>
+        <div id="modelComparisonTable" class="model-comparison-wrap">
+          <div class="loading-row">Loading model metrics…</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── PATIENTS TABLE ───── -->
+  <section id="patients" class="section">
+    <h2 class="section-title">🗂️ Patient Records</h2>
+    <div class="table-controls">
+      <div class="filter-row">
+        <button class="filter-btn active" data-outcome="">All</button>
+        <button class="filter-btn" data-outcome="0">Non-Diabetic</button>
+        <button class="filter-btn" data-outcome="1">Diabetic</button>
+      </div>
+      <div class="page-info" id="pageInfo">Loading...</div>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="data-table" id="patientTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Pregnancies</th>
+            <th>Glucose</th>
+            <th>BP</th>
+            <th>Skin</th>
+            <th>Insulin</th>
+            <th>BMI</th>
+            <th>DPF</th>
+            <th>Age</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="patientBody">
+          <tr>
+            <td colspan="10" class="loading-row">Loading patient data…</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination" id="pagination"></div>
+  </section>
+
+  <!-- ───── PREDICTION FORM ───── -->
+  <section id="predict" class="section">
+    <h2 class="section-title">🔬 Diabetes Risk Predictor</h2>
+    <p class="section-desc">Enter patient values to get a diabetes risk assessment using our trained Random Forest
+      model.</p>
+
+    <div class="predict-layout">
+      <form class="predict-form" id="predictForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Pregnancies</label>
+            <input type="number" id="f_pregnancies" name="pregnancies" min="0" max="20" step="1" value="2" />
+            <span class="form-hint">Normal: 0–17 | Current dataset range</span>
+            <span class="form-warn" id="warn_pregnancies"></span>
+          </div>
+          <div class="form-group">
+            <label>Glucose (mg/dL)</label>
+            <input type="number" id="f_glucose" name="glucose" min="0" max="300" step="1" value="120" />
+            <span class="form-hint">Normal fasting: 70–100 mg/dL</span>
+            <span class="form-warn" id="warn_glucose"></span>
+          </div>
+          <div class="form-group">
+            <label>Blood Pressure (mm Hg)</label>
+            <input type="number" id="f_bp" name="blood_pressure" min="0" max="200" step="1" value="70" />
+            <span class="form-hint">Normal diastolic: 60–80 mm Hg</span>
+            <span class="form-warn" id="warn_bp"></span>
+          </div>
+          <div class="form-group">
+            <label>Skin Thickness (mm)</label>
+            <input type="number" id="f_skin" name="skin_thickness" min="0" max="100" step="1" value="20" />
+            <span class="form-hint">Normal triceps: 10–40 mm</span>
+            <span class="form-warn" id="warn_skin"></span>
+          </div>
+          <div class="form-group">
+            <label>Insulin (μU/mL)</label>
+            <input type="number" id="f_insulin" name="insulin" min="0" max="900" step="1" value="80" />
+            <span class="form-hint">Normal 2hr post-meal: 16–166 μU/mL</span>
+            <span class="form-warn" id="warn_insulin"></span>
+          </div>
+          <div class="form-group">
+            <label>BMI</label>
+            <input type="number" id="f_bmi" name="bmi" min="0" max="70" step="0.1" value="28.0" />
+            <span class="form-hint">Healthy: 18.5–24.9 | Overweight: 25–29.9</span>
+            <span class="form-warn" id="warn_bmi"></span>
+          </div>
+          <div class="form-group">
+            <label>Diabetes Pedigree Function</label>
+            <input type="number" id="f_dpf" name="dpf" min="0" max="3" step="0.001" value="0.500" />
+            <span class="form-hint">Genetic likelihood score: 0.078–2.42</span>
+            <span class="form-warn" id="warn_dpf"></span>
+          </div>
+          <div class="form-group">
+            <label>Age</label>
+            <input type="number" id="f_age" name="age" min="1" max="120" step="1" value="30" />
+            <span class="form-hint">Dataset range: 21–81 years</span>
+            <span class="form-warn" id="warn_age"></span>
+          </div>
+        </div>
+        <button type="submit" class="predict-btn" id="predictBtn">
+          <span class="predict-btn-text">Analyze Risk</span>
+          <span class="predict-btn-spinner" style="display:none">🔄</span>
+        </button>
+      </form>
+
+      <div class="predict-result" id="predictResult" style="display:none">
+        <div class="result-inner">
+          <div class="result-gauge" id="resultGauge">
+            <svg viewBox="0 0 200 120" class="gauge-svg">
+              <defs>
+                <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#4ecdc4" />
+                  <stop offset="50%" stop-color="#f7b731" />
+                  <stop offset="100%" stop-color="#ff6b6b" />
+                </linearGradient>
+              </defs>
+              <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#2a2d3e" stroke-width="16"
+                stroke-linecap="round" />
+              <path id="gaugeFill" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeGrad)"
+                stroke-width="16" stroke-linecap="round" stroke-dasharray="0 251" />
+              <text id="gaugeText" x="100" y="95" text-anchor="middle" font-size="28" font-weight="700"
+                fill="#fff">—%</text>
+              <text x="100" y="114" text-anchor="middle" font-size="11" fill="#8892a4">Risk Score</text>
+            </svg>
+          </div>
+          <div class="result-status" id="resultStatus"></div>
+          <div class="result-detail" id="resultDetail"></div>
+          <!-- Health Tips -->
+          <div class="health-tips" id="healthTips" style="display:none">
+            <div class="tips-title">💡 Health Recommendations</div>
+            <ul class="tips-list" id="tipsList"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── ABOUT ───── -->
+  <section id="about" class="section">
+    <h2 class="section-title">ℹ️ About This Project</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-icon">📁</div>
+        <h3>Dataset</h3>
+        <p>Pima Indians Diabetes Dataset — 768 patient records with 8 clinical features sourced from the National
+          Institute of Diabetes and Digestive and Kidney Diseases.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🌲</div>
+        <h3>ML Model</h3>
+        <p>Random Forest Classifier with 100 estimators, max depth 10, balanced class weights. Compared against Logistic
+          Regression for rigorous evaluation.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">⚙️</div>
+        <h3>Tech Stack</h3>
+        <p>FastAPI (Python) · SQLite · SQLAlchemy · scikit-learn · Chart.js · Vanilla HTML/CSS/JS</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🔍</div>
+        <h3>Features</h3>
+        <p>Real-time diabetes risk prediction, prediction history tracking, interactive analytics charts, feature
+          importance visualization, and multi-model metric comparison.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── FOOTER ───── -->
+  <footer class="footer">
+    <p>Smart Healthcare Analytics · Pima Indians Diabetes Dataset · Powered by FastAPI &amp; Random Forest</p>
+  </footer>
+
+  <!-- Auth Modal -->
+  <div id="authModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+      <button class="modal-close" id="authModalClose" aria-label="Close">×</button>
+      <div class="modal-tabs">
+        <button type="button" class="modal-tab active" data-mode="login">Login</button>
+        <button type="button" class="modal-tab" data-mode="register">Register</button>
+      </div>
+      <h3 class="modal-title" id="authModalTitle">Login</h3>
+      <p class="modal-sub" id="authModalSubtitle">Welcome back. Sign in to continue.</p>
+      <form id="authModalForm" class="modal-form">
+        <label for="modalUsername">Username</label>
+        <input type="text" id="modalUsername" placeholder="Username" autocomplete="username" />
+        <label for="modalPassword">Password</label>
+        <input type="password" id="modalPassword" placeholder="Password" autocomplete="current-password" />
+        <button type="submit" id="authSubmitBtn" class="auth-btn">Login</button>
+      </form>
+      <div class="modal-status" id="authModalStatus"></div>
+    </div>
+  </div>
+
+  <script src="static/app.js"></script>
+</body>
+
+</html>

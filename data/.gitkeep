@@ -1,0 +1,340 @@
+{
+    "timestamp_utc": "2026-03-09T18:48:46.416074+00:00",
+    "prediction_id": 1,
+    "submitted_by_patient": {
+        "pregnancies": 0,
+        "glucose": 120,
+        "blood_pressure": 70,
+        "skin_thickness": 20,
+        "insulin": 80,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 30
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 23.6,
+        "risk_level": "Low"
+    }
+}
+{
+    "timestamp_utc": "2026-03-09T18:58:47.163851+00:00",
+    "prediction_id": 2,
+    "submitted_by_patient": {
+        "pregnancies": 2.0,
+        "glucose": 120.0,
+        "blood_pressure": 70.0,
+        "skin_thickness": 20.0,
+        "insulin": 80.0,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 30.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 22.6,
+        "risk_level": "Low"
+    }
+}
+{
+    "timestamp_utc": "2026-03-09T18:59:44.209806+00:00",
+    "prediction_id": 3,
+    "submitted_by_patient": {
+        "pregnancies": 12.0,
+        "glucose": 111.0,
+        "blood_pressure": 70.0,
+        "skin_thickness": 20.0,
+        "insulin": 80.0,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 30.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 30.4,
+        "risk_level": "Low"
+    }
+}
+{
+    "timestamp_utc": "2026-03-09T19:07:59.998116+00:00",
+    "prediction_id": 4,
+    "username": "patient_demo_user2",
+    "submitted_by_patient": {
+        "pregnancies": 3.0,
+        "glucose": 150.0,
+        "blood_pressure": 82.0,
+        "skin_thickness": 24.0,
+        "insulin": 88.0,
+        "bmi": 32.1,
+        "dpf": 0.61,
+        "age": 38.0
+    },
+    "prediction_output": {
+        "prediction": 1,
+        "probability": 54.5,
+        "risk_level": "Medium"
+    }
+}
+{
+    "timestamp_utc": "2026-03-09T19:09:52.990035+00:00",
+    "prediction_id": 5,
+    "username": "patient_demo_user3",
+    "submitted_by_patient": {
+        "pregnancies": 3.0,
+        "glucose": 150.0,
+        "blood_pressure": 82.0,
+        "skin_thickness": 24.0,
+        "insulin": 88.0,
+        "bmi": 32.1,
+        "dpf": 0.61,
+        "age": 38.0
+    },
+    "prediction_output": {
+        "prediction": 1,
+        "probability": 54.5,
+        "risk_level": "Medium"
+    }
+}
+{
+    "timestamp_utc": "2026-03-09T19:14:59.811559+00:00",
+    "prediction_id": 6,
+    "username": "deepeshhere21@gmail.com",
+    "submitted_by_patient": {
+        "pregnancies": 2.0,
+        "glucose": 120.0,
+        "blood_pressure": 70.0,
+        "skin_thickness": 20.0,
+        "insulin": 80.0,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 30.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 22.6,
+        "risk_level": "Low"
+    }
+}
+{
+    "timestamp_utc": "2026-03-09T19:15:27.235635+00:00",
+    "prediction_id": 7,
+    "username": "deepeshhere21@gmail.com",
+    "submitted_by_patient": {
+        "pregnancies": 10.0,
+        "glucose": 120.0,
+        "blood_pressure": 70.0,
+        "skin_thickness": 15.0,
+        "insulin": 80.0,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 20.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 16.1,
+        "risk_level": "Low"
+    }
+}
+{
+    "timestamp_utc": "2026-03-09T19:15:39.270645+00:00",
+    "prediction_id": 8,
+    "username": "deepeshhere21@gmail.com",
+    "submitted_by_patient": {
+        "pregnancies": 10.0,
+        "glucose": 200.0,
+        "blood_pressure": 180.0,
+        "skin_thickness": 15.0,
+        "insulin": 80.0,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 20.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 46.7,
+        "risk_level": "Medium"
+    }
+}
+{
+    "timestamp_utc": "2026-03-09T19:18:48.039826+00:00",
+    "prediction_id": 9,
+    "username": "zoney",
+    "submitted_by_patient": {
+        "pregnancies": 10.0,
+        "glucose": 200.0,
+        "blood_pressure": 180.0,
+        "skin_thickness": 15.0,
+        "insulin": 80.0,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 20.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 46.7,
+        "risk_level": "Medium"
+    }
+}
+{
+    "timestamp_utc": "2026-03-09T19:28:03.888633+00:00",
+    "prediction_id": 10,
+    "username": "simple_user_01",
+    "submitted_by_patient": {
+        "pregnancies": 1.0,
+        "glucose": 130.0,
+        "blood_pressure": 76.0,
+        "skin_thickness": 18.0,
+        "insulin": 70.0,
+        "bmi": 27.5,
+        "dpf": 0.42,
+        "age": 29.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 26.1,
+        "risk_level": "Low"
+    }
+}
+{
+    "timestamp_utc": "2026-03-09T19:46:31.411265+00:00",
+    "prediction_id": 11,
+    "username": "sss",
+    "submitted_by_patient": {
+        "pregnancies": 2.0,
+        "glucose": 120.0,
+        "blood_pressure": 70.0,
+        "skin_thickness": 20.0,
+        "insulin": 80.0,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 30.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 22.6,
+        "risk_level": "Low"
+    }
+}
+{
+    "timestamp_utc": "2026-03-10T02:43:27.925806+00:00",
+    "prediction_id": 12,
+    "username": "abhi",
+    "submitted_by_patient": {
+        "pregnancies": 0.0,
+        "glucose": 150.0,
+        "blood_pressure": 180.0,
+        "skin_thickness": 15.0,
+        "insulin": 80.0,
+        "bmi": 40.0,
+        "dpf": 0.5,
+        "age": 30.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 44.6,
+        "risk_level": "Medium"
+    }
+}
+{
+    "timestamp_utc": "2026-03-10T02:43:46.348134+00:00",
+    "prediction_id": 13,
+    "username": "abhi",
+    "submitted_by_patient": {
+        "pregnancies": 0.0,
+        "glucose": 100.0,
+        "blood_pressure": 180.0,
+        "skin_thickness": 15.0,
+        "insulin": 80.0,
+        "bmi": 40.0,
+        "dpf": 0.5,
+        "age": 30.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 20.8,
+        "risk_level": "Low"
+    }
+}
+{
+    "timestamp_utc": "2026-03-10T14:47:21.793820+00:00",
+    "prediction_id": 14,
+    "username": "deepeshhere21@gmail.com",
+    "submitted_by_patient": {
+        "pregnancies": 2.0,
+        "glucose": 120.0,
+        "blood_pressure": 70.0,
+        "skin_thickness": 20.0,
+        "insulin": 80.0,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 30.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 22.6,
+        "risk_level": "Low"
+    }
+}
+{
+    "timestamp_utc": "2026-03-10T17:19:39.700047+00:00",
+    "prediction_id": 1,
+    "username": "deepeshhere21@gmail.com",
+    "submitted_by_patient": {
+        "pregnancies": 2.0,
+        "glucose": 120.0,
+        "blood_pressure": 70.0,
+        "skin_thickness": 20.0,
+        "insulin": 80.0,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 30.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 22.6,
+        "risk_level": "Low"
+    }
+}
+{
+    "timestamp_utc": "2026-03-10T18:10:27.571052+00:00",
+    "prediction_id": 1,
+    "username": "deepeshhere21@gmail.com",
+    "submitted_by_patient": {
+        "pregnancies": 2.0,
+        "glucose": 120.0,
+        "blood_pressure": 70.0,
+        "skin_thickness": 20.0,
+        "insulin": 80.0,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 30.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 22.6,
+        "risk_level": "Low"
+    }
+}
+{
+    "timestamp_utc": "2026-03-10T18:10:28.939269+00:00",
+    "prediction_id": 2,
+    "username": "deepeshhere21@gmail.com",
+    "submitted_by_patient": {
+        "pregnancies": 2.0,
+        "glucose": 120.0,
+        "blood_pressure": 70.0,
+        "skin_thickness": 20.0,
+        "insulin": 80.0,
+        "bmi": 28.0,
+        "dpf": 0.5,
+        "age": 30.0
+    },
+    "prediction_output": {
+        "prediction": 0,
+        "probability": 22.6,
+        "risk_level": "Low"
+    }
+}{"timestamp_utc": "2026-03-10T19:25:43.507319+00:00", "prediction_id": 3, "username": "deepeshhere21@gmail.com", "submitted_by_patient": {"pregnancies": 2.0, "glucose": 120.0, "blood_pressure": 70.0, "skin_thickness": 20.0, "insulin": 80.0, "bmi": 28.0, "dpf": 0.5, "age": 30.0}, "prediction_output": {"prediction": 0, "probability": 22.6, "risk_level": "Low"}}
+{"timestamp_utc": "2026-03-10T19:33:27.170656+00:00", "prediction_id": 4, "username": "deepeshhere21@gmail.com", "submitted_by_patient": {"pregnancies": 2.0, "glucose": 120.0, "blood_pressure": 70.0, "skin_thickness": 20.0, "insulin": 80.0, "bmi": 28.0, "dpf": 0.5, "age": 30.0}, "prediction_output": {"prediction": 0, "probability": 22.6, "risk_level": "Low"}}
+{"timestamp_utc": "2026-03-11T03:52:25.100609+00:00", "prediction_id": 5, "username": "ated_by_patient": {"pregnancies": 2.0, "glucose": 200.0, "blood_pressure": 140.0, "skin_thickness": 20.0, "insulin": 200.0, "bmi": 35.0, "dpf": 0.5, "age": 20.0}, "prediction_output": {"prediction": 1, "probability": 58.8, "risk_level": "Medium"}}
+bhay12", "submit
