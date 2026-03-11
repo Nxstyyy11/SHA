@@ -8,8 +8,4 @@ services:
     startCommand: python run_project.py
     envVars:
       - key: DATA_DIR
-        value: /opt/render/project/src/data
-    disk:
-      name: data
-      mountPath: /opt/render/project/src/data
-      sizeGB: 1
+        value: /tmp/smart-healthcare-analytics

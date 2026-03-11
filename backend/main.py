@@ -236,6 +236,11 @@ def auth_me(user: User = Depends(get_current_user)):
     return {"id": user.id, "username": user.username}
 
 
+@app.get("/api/health")
+def health_check():
+    return {"status": "ok"}
+
+
 @app.post("/api/auth/logout")
 def logout(
     authorization: Optional[str] = Header(None),

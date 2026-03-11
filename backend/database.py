@@ -3,6 +3,7 @@ Database setup and initialization for Smart Healthcare Analytics
 """
 import csv
 import os
+import shutil
 import pandas as pd
 from sqlalchemy import create_engine, Column, Integer, Float, String, DateTime, text
 from datetime import datetime
@@ -14,6 +15,7 @@ DEFAULT_DATA_DIR = os.path.join(BASE_DIR, "..", "data")
 DATA_DIR = os.getenv("DATA_DIR", DEFAULT_DATA_DIR)
 DB_PATH = os.path.join(DATA_DIR, "healthcare.db")
 CSV_PATH = os.path.join(DATA_DIR, "diabetes.csv")
+SOURCE_CSV_PATH = os.path.join(BASE_DIR, "..", "data", "diabetes.csv")
 
 os.makedirs(DATA_DIR, exist_ok=True)
 
@@ -99,7 +101,10 @@ def init_db():
     if count == 0:
         print("Loading diabetes dataset into database...")
         if not os.path.exists(CSV_PATH):
-            _create_sample_data()
+            if os.path.exists(SOURCE_CSV_PATH):
+                shutil.copyfile(SOURCE_CSV_PATH, CSV_PATH)
+            else:
+                _create_sample_data()
 
         df = pd.read_csv(CSV_PATH)
         # Normalize column names
