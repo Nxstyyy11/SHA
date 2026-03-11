@@ -59,6 +59,31 @@ python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 http://localhost:8000
 ```
 
+## 🚀 Deploy on Vercel (FastAPI + Static Frontend)
+
+This repo is ready for Vercel with the included `api/index.py` and `vercel.json`.
+
+### Vercel Build & Output Settings
+
+- **Framework Preset**: `Other`
+- **Build Command**: *(leave blank)*
+- **Output Directory**: `frontend`
+- **Install Command**: `pip install -r backend/requirements.txt`
+
+### Steps
+
+1. Push your changes to GitHub.
+2. Create a new Vercel project from this repo.
+3. Apply the Build & Output settings above.
+4. Deploy.
+
+### Notes
+
+- The frontend calls the API on the same origin (no config needed).
+- Vercel serverless storage is ephemeral. For persistent data, use an external DB.
+- Quick check after deploy: open `/api/health` and expect `{ "status": "ok" }`.
+- Example health check command: `curl https://<your-vercel-domain>/api/health`
+
 ## 📊 Dataset
 
 **Pima Indians Diabetes Dataset** — National Institute of Diabetes and Digestive and Kidney Diseases  

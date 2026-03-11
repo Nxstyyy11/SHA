@@ -35,7 +35,12 @@ app.add_middleware(
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FRONTEND_DIR = os.path.join(BASE_DIR, "..", "frontend")
-PREDICTION_LOG_PATH = os.path.join(BASE_DIR, "..", "data", ".gitkeep")
+IS_VERCEL = bool(os.getenv("VERCEL"))
+PREDICTION_LOG_PATH = (
+    os.path.join("/tmp", "smart_healthcare_analytics_predictions.log")
+    if IS_VERCEL
+    else os.path.join(BASE_DIR, "..", "data", ".gitkeep")
+)
 SESSION_TTL_DAYS = 30
 
 if os.path.isdir(FRONTEND_DIR):
@@ -232,6 +237,11 @@ def login_user(data: AuthInput, db: Session = Depends(get_db)):
 @app.get("/api/auth/me")
 def auth_me(user: User = Depends(get_current_user)):
     return {"id": user.id, "username": user.username}
+
+
+@app.get("/api/health")
+def health_check():
+    return {"status": "ok"}
 
 
 @app.post("/api/auth/logout")

@@ -8,9 +8,14 @@ from sqlalchemy import create_engine, Column, Integer, Float, String, DateTime, 
 from datetime import datetime
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# Database path (one level up in data/ folder)
+# Database path (one level up in data/ folder, or /tmp on Vercel)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, "..", "data")
+IS_VERCEL = bool(os.getenv("VERCEL"))
+if IS_VERCEL:
+    DATA_DIR = os.path.join("/tmp", "smart_healthcare_analytics")
+else:
+    DATA_DIR = os.path.join(BASE_DIR, "..", "data")
+
 DB_PATH = os.path.join(DATA_DIR, "healthcare.db")
 CSV_PATH = os.path.join(DATA_DIR, "diabetes.csv")
 
@@ -183,4 +188,3 @@ def append_patient_to_csv(patient: "Patient"):
             writer.writeheader()
         writer.writerow(row)
     print(f"Appended patient (id={patient.id}) to {CSV_PATH}")
-
